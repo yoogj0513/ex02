@@ -56,4 +56,8 @@ public class HomeController {
 		return "handlebars3";
 	}
 	
+	@RequestMapping(value = "member", method = RequestMethod.GET)
+	public String createMember(){
+		return "MemberInsertForm";
+	}
 }
