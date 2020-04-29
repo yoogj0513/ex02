@@ -44,4 +44,6 @@
 	<context:component-scan base-package="com.yi.persistence"></context:component-scan>
 	<context:component-scan base-package="com.yi.service"></context:component-scan>
 	<context:component-scan base-package="com.yi.aop"></context:component-scan>
+	
+	<!-- *서비스, DAO에서 사용이 많이되면서 변하지 않는 값을 가진 변수는 여기에 빈 등록 -->
 </beans>

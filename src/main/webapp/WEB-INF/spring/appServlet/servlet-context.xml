@@ -27,8 +27,12 @@
 		<beans:property name="maxUploadSize" value="10485760"></beans:property><!-- 원하는 사이즈 조절 가능 -->
 	</beans:bean>
 	
+	<!-- 절대경로 빈 등록 -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="c:/zzz/upload/"></beans:constructor-arg>
+	</beans:bean>
+	
 	<context:component-scan base-package="com.yi.controller" />
 	
-	
-	
+	<!-- *컨트롤러에서 사용이 많이되면서 변하지 않는 값을 가진 변수는 여기에 빈 등록 -->
 </beans:beans>
