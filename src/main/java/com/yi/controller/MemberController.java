@@ -1,5 +1,7 @@
 package com.yi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,7 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<String> createMember(@RequestBody MemberVO vo){
 		ResponseEntity<String> entity = null;
 		try {
@@ -28,6 +30,19 @@ public class MemberController {
 			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
 		}
 		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ResponseEntity<List<MemberVO>> list() {
+		ResponseEntity<List<MemberVO>> entity = null;
+		try {
+			List<MemberVO> list= service.list();
+			entity = new ResponseEntity<List<MemberVO>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<MemberVO>>(HttpStatus.BAD_REQUEST);
+		}
 		return entity;
 	}
 	
