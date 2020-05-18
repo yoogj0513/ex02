@@ -110,11 +110,15 @@ public class UploadController {
 	
 	@RequestMapping(value = "outUp", method = RequestMethod.POST)
 	public String outUploadResult(String test, MultipartFile file, Model model) throws IOException {
+		System.out.println("file : " + file);
+		
 		//폴더 만들기
 		//String uploadPath = "c:/zzz/upload"; //전역변수로 만듬
 		String saveName = UploadFileUtils.uploadFile(uploadPath, 
 													file.getOriginalFilename(), 
 													file.getBytes());
+		
+		System.out.println(saveName);
 		
 		model.addAttribute("test", test);
 		model.addAttribute("file", saveName);

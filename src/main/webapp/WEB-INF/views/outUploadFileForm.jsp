@@ -15,7 +15,7 @@
 		<input type="submit" value="제출" />
 	</form>
 	<div id="dropBox"></div>
-	<script>
+	<script>		
 		$("#file").change(function(){
 			var file = $(this)[0].files[0]; // $(this)[0] : javascript객체
 			console.log(file);
@@ -26,6 +26,8 @@
 				var $img = $("<img>").attr("src", e.target.result); //e.target.result == reader.result -> 똑같은 값이 가져옴
 				$("#dropBox").html($img);
 			}
+			
+			console.log($("input[name='file']").val());
 		})
 	</script>
 </body>

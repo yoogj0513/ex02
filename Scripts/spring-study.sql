@@ -62,3 +62,47 @@ desc tbl_reply;
 select * from tbl_reply;
 		
 select count(rno) from tbl_reply where bno = 4098;
+
+-- 댓글 수
+alter table tbl_board add column replycnt int default 0;
+desc tbl_board;
+select * from tbl_board;
+
+update tbl_board set replycnt = (
+	select count(rno) from tbl_reply 
+	where bno = tbl_board.bno
+);
+
+
+select * from tbl_board order by bno desc limit 0, 10;
+		
+select count(*) from book_spring.tbl_reply where bno = 4098;
+	
+-- 파일 테이블
+create table tbl_attach(
+	fullName varchar(150) not null,
+	bno int not null,
+	regdate timestamp default now(),
+	primary key(fullName)
+);
+
+alter table tbl_attach add constraint fk_board_attach
+foreign key (bno) references tbl_board(bno);
+
+select * from tbl_attach;
+
+select * from tbl_board order by bno desc;
+select * from tbl_reply where bno = 4106;
+
+select * 
+	from tbl_board b left join tbl_attach a on b.bno = a.bno 
+	where b.bno = 4104;
+
+select * from tbl_attach where bno = 4101 and `fullName` = '/2020/05/04/s_2f279607-0de4-459a-9471-7f5dccf30955_날마다 천체 물리.jpg'
+		
+delete 
+	from tbl_attach 
+	where bno = 4101 and `fullName` = '/2020/05/04/s_2f279607-0de4-459a-9471-7f5dccf30955_날마다 천체 물리.jpg';
+		
+		
+
